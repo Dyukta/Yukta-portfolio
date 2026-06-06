@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yukta | Full Stack Developer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Caveat:wght@400;500;600;700&family=Shadows+Into+Light&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      const originalTitle = "Yukta | Full-Stack Developer";
+
+      const awayTitles = [
+        "Missing you already 😔",
+        "Hope to work with you soon 🤝"
+      ];
+
+      let titleInterval = null;
+      let titleIndex = 0;
+
+      document.title = originalTitle;
+
+      function startTitleAnimation() {
+        if (titleInterval) return;
+
+        titleIndex = 0;
+        document.title = awayTitles[titleIndex];
+
+        titleInterval = setInterval(() => {
+          titleIndex = (titleIndex + 1) % awayTitles.length;
+          document.title = awayTitles[titleIndex];
+        }, 2000);
+      }
+
+      function stopTitleAnimation() {
+        if (titleInterval) {
+          clearInterval(titleInterval);
+          titleInterval = null;
+        }
+
+        document.title = originalTitle;
+      }
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          startTitleAnimation();
+        } else {
+          stopTitleAnimation();
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
